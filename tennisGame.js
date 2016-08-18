@@ -32,15 +32,33 @@ var ballYSpeed = 4;
 
 window.onload = function(){
 
-canvas = document.getElementById('gameCanvas');
-canvasContext = canvas.getContext('2d');
-setInterval(function (){
+	canvas = document.getElementById('gameCanvas');
+	canvasContext = canvas.getContext('2d');
+	setInterval(function (){
 				update()
 				draw()
-			}, 1000/FPS);
+				}, 1000/FPS);
+
+	canvas.addEventListener('mousemove', 
+			function(evt){
+				var mousePos = calculateMousePos(evt);
+				paddle1Y = mousePos.y - PADDLE_LEN/2;
+	});
+		
 
 }
 
+
+function calculateMousePos(evt){
+	var rect = canvas.getBoundingClientRect();
+	var root = document.documentElement;
+	var mouseX = evt.clientX - rect.left - root.scrollLeft;
+	var mouseY = evt.clientY - rect.top - root.scrollTop;
+	return{
+		x:mouseX,
+		y:mouseY
+	}
+}
 
 function update(){
 
@@ -81,7 +99,8 @@ function drawNet(){
 	var lengthOfNet = 11
 	for (i = 0; i < 20; i++) {
 		// Center the net on x axis with WIDTH/2 - widthOfNet/2 
-		colorRect(WIDTH/2 - widthOfNet/2, netStart + i * distBetween, widthOfNet, lengthOfNet, 'white');
+		colorRect(WIDTH/2 - widthOfNet/2, netStart + i * distBetween,
+					 widthOfNet, lengthOfNet, 'white');
 	}
 }
 
