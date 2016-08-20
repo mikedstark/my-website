@@ -1,0 +1,41 @@
+body
+{
+	margin: 0;
+}
+
+h1 {
+    color: black;
+}
+#page
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1000px;
+	height: 800px;
+}
+
+#header
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1024px;
+	height: 70px;
+	background-color: yellow;
+	color: #fff;
+}
+
+#tennis_game
+{
+	position: absolute;
+	left: 0px;
+	top: 70px;
+	width: 800px;
+	height: 600px;
+	background-color: #fff;
+	clip: auto;
+	overflow: hidden;
+	background-color: black;
+}
+
