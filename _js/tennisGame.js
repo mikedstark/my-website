@@ -36,8 +36,15 @@ var scoreP1 = 0;
 var scoreP2 = 0;
 
 var endGame = false;
+var clickToStart = true;
 
 function mouseClicked(evt){
+
+	if(clickToStart){
+		clickToStart = false;
+	}
+
+
 	if (endGame){
 		endGame = false;
 		scoreP2 = 0;
@@ -83,9 +90,15 @@ function calculateMousePos(evt){
 
 function update(){
 
+	if(clickToStart){
+		return;
+	}
+
 	if(endGame){
 		return;
 	}
+
+
 	computerAI();
 
 	ballX += ballXSpeed;
@@ -151,7 +164,9 @@ function changeY(paddle){
 		var deltaY = ballY -(tempPaddle + PADDLE_HEIGHT/2);
 		ballYSpeed = deltaY * .10;
 		if(ballYSpeed < 2){ ballYSpeed = 2;}
+
 }
+////////////////
 
 function computerAI(){
 	//Computer AI
@@ -190,6 +205,11 @@ function draw(){
 	// Black Background
 	colorRect(0,0,WIDTH,HEIGHT,'black');
 
+	if(clickToStart){
+		startGame()
+		return;
+	}
+
 	// check win condition if/then display Winning Screen
 	if(endGame){
 		winScreen();
@@ -210,6 +230,15 @@ function draw(){
 	drawScores();
 }
 
+function startGame(){
+
+	var start = canvas.getContext('2d');
+	canvasContext.fillStyle = 'white';
+	start.textAlign='center';
+	canvasContext.fillText("CLICK TO START",WIDTH/2, HEIGHT/2);
+
+}
+
 function winScreen(){
 
 	var winner = "Player 1 wins!!!"
@@ -222,7 +251,7 @@ function winScreen(){
 	}
 
 	canvasContext.fillStyle = 'white';
-	clickMe.textAlign='center';
+	//clickMe.textAlign='center';
 	clickMe.fillText(click, WIDTH/2 , HEIGHT/4);
 
 	canvasContext.fillText(winner, WIDTH/2, HEIGHT/2);
