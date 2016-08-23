@@ -38,6 +38,30 @@ var scoreP2 = 0;
 var endGame = false;
 var clickToStart = true;
 
+
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        // up arrow
+        //console.log("up key pressed")
+        paddle1Y-= 20;
+    }
+    else if (e.keyCode == '40') {
+        // down arrow
+        paddle1Y+=20;
+    }
+    else if (e.keyCode == '37') {
+       // left arrow
+    }
+    else if (e.keyCode == '39') {
+       // right arrow
+    }
+
+}
+
 function mouseClicked(evt){
 
 	if(clickToStart){
@@ -53,6 +77,14 @@ function mouseClicked(evt){
 }
 
 window.onload = function(){
+
+
+	// canvas2 = document.getElementById('headerCanvas');
+	// canvasContextHeader = canvas2.getContext('2d');
+
+
+	// canvasContextHeader.fillStyle = color;
+	// canvasContextHeader.fillRect(leftX,topY,width,height);
 
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
@@ -72,7 +104,13 @@ window.onload = function(){
 				if (movement > 0 && movement < HEIGHT - PADDLE_HEIGHT)
 					paddle1Y = movement; //paddle2Y to control left paddle instead
 	});
-		
+
+	document.onkeydown = checkKey;	
+
+
+
+
+
 
 }
 
