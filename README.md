@@ -1,5 +1,6 @@
 README
+(old)
 
-My Website :: MikeDStark.com
+My (old) Website :: MikeDStark.com
 
-Working on some javascript games...
+Working on pong in JavaScript.
